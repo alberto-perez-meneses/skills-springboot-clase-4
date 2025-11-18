@@ -38,5 +38,14 @@ public class ProductImpl implements IProduct {
         return productRepository.save(productEntity);
     }
 
+    @Override
+    public Product update(ProductDtoRequest product) {
+        Product prodEntity = new Product();
+        prodEntity.setId(product.getId());
+        prodEntity.setNombre(product.getNombre());
+        prodEntity.setSku(product.getSku());
+        prodEntity.setPrecio(product.getPrecio());
+        return productRepository.save(prodEntity);
+    }
 
 }

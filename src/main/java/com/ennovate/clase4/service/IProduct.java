@@ -9,4 +9,5 @@ public interface IProduct {
 
     List<Product> getProducts();
     Product create(ProductDtoRequest product);
+    Product update (ProductDtoRequest product);
 }
