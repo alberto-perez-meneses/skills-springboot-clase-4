@@ -38,5 +38,10 @@ public class ProductImpl implements IProduct {
         return productRepository.save(productEntity);
     }
 
+    @Override
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
+
 
 }
