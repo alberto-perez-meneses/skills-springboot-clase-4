@@ -4,6 +4,7 @@ import com.ennovate.clase4.model.Product;
 import com.ennovate.clase4.model.ProductDtoRequest;
 import com.ennovate.clase4.service.IProduct;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,13 +27,15 @@ public class ProductController {
         return productService.create(request);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        productService.delete(id);
-    }
-    @PutMapping
-    public Product update(@RequestBody ProductDtoRequest request){
-        return productService.update(request);
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> update(@RequestBody ProductDtoRequest request){
+        Product product = productService.update(request);
+        return ResponseEntity.ok(product);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

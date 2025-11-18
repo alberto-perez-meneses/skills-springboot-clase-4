@@ -43,6 +43,7 @@ public class ProductImpl implements IProduct {
         productRepository.deleteById(id);
     }
 
+    @Override
     public Product update(ProductDtoRequest product) {
         Product prodEntity = new Product();
         prodEntity.setId(product.getId());
@@ -51,5 +52,4 @@ public class ProductImpl implements IProduct {
         prodEntity.setPrecio(product.getPrecio());
         return productRepository.save(prodEntity);
     }
-
 }
