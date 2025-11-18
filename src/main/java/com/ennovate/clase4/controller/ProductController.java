@@ -26,4 +26,9 @@ public class ProductController {
         return productService.create(request);
     }
 
+    @PutMapping
+    public Product update(@RequestBody ProductDtoRequest request){
+        return productService.update(request);
+    }
+
 }
