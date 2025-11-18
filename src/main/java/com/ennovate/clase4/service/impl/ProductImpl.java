@@ -39,6 +39,10 @@ public class ProductImpl implements IProduct {
     }
 
     @Override
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
+
     public Product update(ProductDtoRequest product) {
         Product prodEntity = new Product();
         prodEntity.setId(product.getId());
