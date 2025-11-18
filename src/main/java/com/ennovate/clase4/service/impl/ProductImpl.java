@@ -52,4 +52,9 @@ public class ProductImpl implements IProduct {
         return productRepository.save(prodEntity);
     }
 
+    @Override
+    public List<Product> buscarPorPrecioMayorA(Double precio) {
+        return productRepository.buscarPorPrecioMayorA(precio);
+    }
+
 }

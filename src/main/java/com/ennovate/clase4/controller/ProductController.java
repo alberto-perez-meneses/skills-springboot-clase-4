@@ -21,6 +21,11 @@ public class ProductController {
         return productService.getProducts();
     }
 
+    @GetMapping("/find-by/precio")
+    public List<Product> buscarPorPrecioMayorA(@RequestParam Double precio){
+        return productService.buscarPorPrecioMayorA(precio);
+    }
+
     @PostMapping
     public Product create(@RequestBody ProductDtoRequest request){
         return productService.create(request);
