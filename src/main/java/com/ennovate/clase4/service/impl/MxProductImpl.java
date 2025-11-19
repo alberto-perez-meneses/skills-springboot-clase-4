@@ -23,13 +23,17 @@ public class MxProductImpl implements IProduct {
     @Value("${config.app.country:mx}")
     private String country;
 
+    @Value("${config.app.clientId}")
+    private String clientId;
+
+
     public MxProductImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @Override
     public List<Product> getProducts() {
-        log.info("el pais es : {}",country);
+        log.info("el pais es : {} y el client id es {}", country, clientId);
         return productRepository.findAll();
     }
 

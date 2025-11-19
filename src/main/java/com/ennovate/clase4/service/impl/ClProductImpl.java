@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-@Profile({"cldev"})
+@Profile({"cldev","default"})
 public class ClProductImpl implements IProduct {
 
     @Autowired
