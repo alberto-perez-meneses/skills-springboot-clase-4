@@ -11,5 +11,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM product p WHERE p.precio > :precio")
     List<Product> buscarPorPrecioMayorA(@Param("precio") Double precio);
     // todo: implementar buscar por sku
-
+    List<Product> findBySku(String sku);
+    // Consulta nativa
+    @Query(value = "SELECT * FROM product WHERE PRECIO < :precio", nativeQuery = true)
+    List<Product> buscarPorPrecioMenorA(@Param("precio") double precio);
 }

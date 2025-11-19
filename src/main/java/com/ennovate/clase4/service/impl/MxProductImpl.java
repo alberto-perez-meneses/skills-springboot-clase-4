@@ -4,25 +4,32 @@ import com.ennovate.clase4.model.Product;
 import com.ennovate.clase4.model.ProductDtoRequest;
 import com.ennovate.clase4.repository.ProductRepository;
 import com.ennovate.clase4.service.IProduct;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Slf4j
-public class ProductImpl implements IProduct {
+@Profile({"mxdev"})
+public class MxProductImpl implements IProduct {
 
     @Autowired
     private final ProductRepository productRepository;
+    @Value("${config.app.country:mx}")
+    private String country;
 
-    public ProductImpl(ProductRepository productRepository) {
+    public MxProductImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @Override
     public List<Product> getProducts() {
+        log.info("el pais es : {}",country);
         return productRepository.findAll();
     }
 
