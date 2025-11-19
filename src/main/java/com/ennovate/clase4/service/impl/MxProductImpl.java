@@ -50,6 +50,7 @@ public class MxProductImpl implements IProduct {
         productRepository.deleteById(id);
     }
 
+    @Override
     public Product update(ProductDtoRequest product) {
         Product prodEntity = new Product();
         prodEntity.setId(product.getId());
@@ -63,5 +64,4 @@ public class MxProductImpl implements IProduct {
     public List<Product> buscarPorPrecioMayorA(Double precio) {
         return productRepository.buscarPorPrecioMayorA(precio);
     }
-
 }
