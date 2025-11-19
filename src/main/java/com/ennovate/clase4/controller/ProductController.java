@@ -18,13 +18,20 @@ public class ProductController {
     private final IProduct productService;
 
     @GetMapping
-    public List<Product> getProducts(){
-        return productService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(){
+        List<Product> products = productService.getProducts();
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/find-by/precio")
+    public List<Product> buscarPorPrecioMayorA(@RequestParam Double precio){
+        return productService.buscarPorPrecioMayorA(precio);
     }
 
     @PostMapping
-    public Product create(@RequestBody ProductDtoRequest request){
-        return productService.create(request);
+    public ResponseEntity <Product> create(@RequestBody ProductDtoRequest request){
+        Product product = productService.create(request);
+        return ResponseEntity.ok(product);
     }
 
     @PutMapping("/{id}")
