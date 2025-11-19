@@ -22,13 +22,16 @@ public class ClProductImpl implements IProduct {
     @Value("${config.app.country:cl}")
     private String country;
 
+    @Value("${config.app.clientId:cl}")
+    private String clientId;
+
     public ClProductImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @Override
     public List<Product> getProducts() {
-        log.info("el pais es : {}", country);
+        log.info("el pais es : {} y el clientId es {}", country, clientId);
         return productRepository.findAll();
     }
 
