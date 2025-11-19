@@ -9,7 +9,6 @@ public interface IProduct {
 
     List<Product> getProducts();
     Product create(ProductDtoRequest product);
-
     void delete(Long id);
     Product update (ProductDtoRequest product);
     List<Product> buscarPorPrecioMayorA(Double precio);
