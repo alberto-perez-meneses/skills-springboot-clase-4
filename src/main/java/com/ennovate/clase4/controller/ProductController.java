@@ -4,6 +4,7 @@ import com.ennovate.clase4.model.Product;
 import com.ennovate.clase4.model.ProductDtoRequest;
 import com.ennovate.clase4.service.IProduct;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class ProductController {
     private final IProduct productService;
 
     @GetMapping
-    public List<Product> getProducts(){
-        return productService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(){
+        List<Product> products = productService.getProducts();
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/find-by/precio")
@@ -27,8 +29,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product create(@RequestBody ProductDtoRequest request){
-        return productService.create(request);
+    public ResponseEntity <Product> create(@RequestBody ProductDtoRequest request){
+        Product product = productService.create(request);
+        return ResponseEntity.ok(product);
     }
 
     @DeleteMapping("/{id}")
