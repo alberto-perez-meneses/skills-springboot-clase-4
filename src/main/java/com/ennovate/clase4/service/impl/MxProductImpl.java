@@ -1,10 +1,12 @@
 package com.ennovate.clase4.service.impl;
 
+import com.ennovate.clase4.config.AppConfigProperties;
 import com.ennovate.clase4.model.Product;
 import com.ennovate.clase4.model.ProductDtoRequest;
 import com.ennovate.clase4.repository.ProductRepository;
 import com.ennovate.clase4.service.IProduct;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,24 +18,19 @@ import java.util.List;
 @Service
 @Slf4j
 @Profile({"mxdev"})
+@AllArgsConstructor
 public class MxProductImpl implements IProduct {
 
-    @Autowired
     private final ProductRepository productRepository;
-    @Value("${config.app.country:mx}")
-    private String country;
-
-    @Value("${config.app.clientId}")
-    private String clientId;
+    private final AppConfigProperties appConfigProperties;
 
 
-    public MxProductImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+
 
     @Override
     public List<Product> getProducts() {
-        log.info("el pais es : {} y el client id es {}", country, clientId);
+        log.info("el pais es : {} y el client id es {}", appConfigProperties.getCountry(),
+                appConfigProperties.getClientId());
         return productRepository.findAll();
     }
 
